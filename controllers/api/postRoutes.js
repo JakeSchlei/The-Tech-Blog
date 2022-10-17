@@ -40,7 +40,8 @@ router.post('/', async (req, res) => {
         }],
         title: req.body.title,
         text_content: req.body.text_content,
-        timestamps: req.body.timestamps
+        timestamps: req.body.timestamps,
+        user_id: req.session.userID,
     });
     res.json(newPost);
     } catch (err)  {
