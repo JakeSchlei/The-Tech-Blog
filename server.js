@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const sequelize = require('./config/connection');
 
-// const routes = require('./controller')
+const routes = require('./controllers')
 
 // config for handlebars
 const hbs = exphbs.create({});
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.use(routes);
+app.use(routes);
 
 sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

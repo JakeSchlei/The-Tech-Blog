@@ -47,3 +47,39 @@ router.post('/', async (req, res) => {
         res.status(500).json(err);
     } 
 });
+
+router.put('/:id', async (req, res) => {
+    try {
+        const  updatePost = await Post.update(
+            {
+                title: req.body.title,
+                text_content: req.body.text_content
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        );
+        res.json(updatePost);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletePost = await Post.destroy(
+            {
+               where: {
+                id: req.params.id
+               } 
+            }
+        );
+        res.json(deletePost);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+module.exports = router;
